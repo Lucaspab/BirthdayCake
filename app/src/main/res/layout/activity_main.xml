@@ -14,7 +14,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Happy Birthday!!!"
+            android:text="Happy Birthday!!"
             android:textSize="50dp" />
     </LinearLayout>
 
