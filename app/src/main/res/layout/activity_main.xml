@@ -46,8 +46,8 @@
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Forsting!!"
-            android:textSize="20dp" />
+            android:text="Forsting!"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/button2"
