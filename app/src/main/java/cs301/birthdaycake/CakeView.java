@@ -34,6 +34,7 @@ public class CakeView extends SurfaceView {
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
 
+    private CakeModel cakeModel;
 
 
     /**
@@ -42,6 +43,10 @@ public class CakeView extends SurfaceView {
      */
     public CakeView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        cakeModel = new CakeModel();
+
+
 
         //This is essential or your onDraw method won't get called
         setWillNotDraw(false);
@@ -62,12 +67,20 @@ public class CakeView extends SurfaceView {
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
-    }
 
+    }
     /**
      * draws a candle at a specified position.  Important:  the left, bottom coordinates specify
      * the position of the bottom left corner of the candle
      */
+    //public CakeModel (cakeModel) {
+        //return CakeModel;
+
+    //}
+
+
+
+
     public void drawCandle(Canvas canvas, float left, float bottom) {
         canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
 
@@ -86,6 +99,11 @@ public class CakeView extends SurfaceView {
         canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
 
     }
+
+    public CakeModel getCakeModel() {
+
+        return cakeModel;
+}
 
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
