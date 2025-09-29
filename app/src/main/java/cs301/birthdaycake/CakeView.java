@@ -5,9 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
 
-public class CakeView extends SurfaceView {
+import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
+
+public class CakeView extends SurfaceView implements View.OnTouchListener{
 
     /* These are the paints we'll use to draw the birthday cake below */
     Paint cakePaint = new Paint();
@@ -16,6 +22,7 @@ public class CakeView extends SurfaceView {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
+    Paint textPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -36,6 +43,9 @@ public class CakeView extends SurfaceView {
 
     private CakeModel cakeModel;
 
+    private ArrayList<text> textList;
+    private float touchX;
+    private float touchY;
 
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
@@ -45,6 +55,7 @@ public class CakeView extends SurfaceView {
         super(context, attrs);
 
         cakeModel = new CakeModel();
+        textList = new ArrayList<>();
 
 
 
@@ -64,9 +75,12 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(30);
+
 
         setBackgroundColor(Color.WHITE);  //better than black default
-
+        this.setOnTouchListener(this);
 
     }
     /**
@@ -146,5 +160,29 @@ public class CakeView extends SurfaceView {
 
     }//onDraw
 
-}//class CakeView
+    @Override
+    public void onDrawForeground(@NonNull Canvas canvas) {
+        super.onDrawForeground(canvas);
+        for (text s : textList) {
+            s.draw(canvas);
+        }
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            touchX = motionEvent.getX();
+            touchY = motionEvent.getY();
+
+            text s = new text(touchX, touchY, text.typeText.printText);
+            textList.add(s);
+
+            invalidate();
+            return true;
+        }
+        return false;
+    }
+}
+
+//class CakeView
 
