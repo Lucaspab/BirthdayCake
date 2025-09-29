@@ -17,12 +17,16 @@ public class MainActivity extends AppCompatActivity {
 
         CakeView view = findViewById(R.id.cakeView);
         CakeController controller = new CakeController(view);
+
+        
     }
 
     public void goodbye(View button) {
         //System.out.println("Goodbye");
         Log.i("button", "Goodbye");
     }
+
+
 
 
     }
