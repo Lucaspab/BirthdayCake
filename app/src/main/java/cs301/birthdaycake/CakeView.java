@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class CakeView extends SurfaceView implements View.OnTouchListener{
+public class CakeView extends SurfaceView {
 
     /* These are the paints we'll use to draw the birthday cake below */
     Paint cakePaint = new Paint();
@@ -43,9 +43,10 @@ public class CakeView extends SurfaceView implements View.OnTouchListener{
 
     private CakeModel cakeModel;
 
-    private ArrayList<text> textList;
-    private float touchX;
-    private float touchY;
+    private text textList;
+    private int index = 0;
+
+
 
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
@@ -55,8 +56,6 @@ public class CakeView extends SurfaceView implements View.OnTouchListener{
         super(context, attrs);
 
         cakeModel = new CakeModel();
-        textList = new ArrayList<>();
-
 
 
         //This is essential or your onDraw method won't get called
@@ -76,11 +75,11 @@ public class CakeView extends SurfaceView implements View.OnTouchListener{
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
         textPaint.setColor(Color.RED);
-        textPaint.setTextSize(30);
+        textPaint.setTextSize(80);
 
 
         setBackgroundColor(Color.WHITE);  //better than black default
-        this.setOnTouchListener(this);
+
 
     }
     /**
@@ -157,31 +156,16 @@ public class CakeView extends SurfaceView implements View.OnTouchListener{
         // Draws Second Candle
         drawCandle(canvas, cakeLeft + (cakeWidth*2)/3 - candleWidth/2, cakeTop);
 
+        if(index != 0) {
+            canvas.drawText(("(" + cakeModel.x + ", " + cakeModel.y + ")"), 1600, 1000, textPaint);
 
+        }
+        index = index + 1;
     }//onDraw
 
-    @Override
-    public void onDrawForeground(@NonNull Canvas canvas) {
-        super.onDrawForeground(canvas);
-        for (text s : textList) {
-            s.draw(canvas);
-        }
-    }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-            touchX = motionEvent.getX();
-            touchY = motionEvent.getY();
 
-            text s = new text(touchX, touchY, text.typeText.printText);
-            textList.add(s);
 
-            invalidate();
-            return true;
-        }
-        return false;
-    }
 }
 
 //class CakeView

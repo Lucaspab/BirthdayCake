@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
         CakeView view = findViewById(R.id.cakeview);
         CakeController controller = new CakeController(view);
+
+        view.setOnTouchListener(controller);
+
     }
 
     public void goodbye(View button) {

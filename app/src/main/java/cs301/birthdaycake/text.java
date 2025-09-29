@@ -29,7 +29,8 @@ public class text {
     public void draw(Canvas canvas){
         switch(object){
             case printText:
-                canvas.drawText( ("("+ x1 +", " + y1 +")"), 1200, 800, textPaint);
+
+                canvas.drawText( ("("+ x1 +", " + y1 +")"), 1600, 1000, textPaint);
         }
 
     }
