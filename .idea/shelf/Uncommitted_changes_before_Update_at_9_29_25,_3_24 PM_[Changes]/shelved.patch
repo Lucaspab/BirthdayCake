@@ -1,0 +1,62 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:orientation=\"vertical\">\n\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"horizontal\"\n        android:textAlignment=\"center\">\n\n        <TextView\n            android:id=\"@+id/textView\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:text=\"Happy Birthday!!\"\n            android:textAlignment=\"center\"\n            android:textSize=\"50dp\" />\n    </LinearLayout>\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"583dp\"\n        android:layout_weight=\"1\"\n        android:orientation=\"horizontal\">\n\n        <!--        CakeView is a custom SurfaceView that is defined in the app's source code -->\n        <cs301.birthdaycake.CakeView\n            android:id=\"@+id/cakeview\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\" />\n    </LinearLayout>\n\n    <LinearLayout\n        android:id=\"@+id/button_group\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"horizontal\">\n\n        <LinearLayout\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"match_parent\"\n            android:layout_marginLeft=\"20dp\"\n            android:layout_weight=\"5\"\n            android:orientation=\"vertical\">\n\n            <TextView\n                android:id=\"@+id/textView2\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_weight=\"1\"\n                android:text=\"How many Candles?\"\n                android:textSize=\"20dp\" />\n\n            <SeekBar\n                android:id=\"@+id/seekBar\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_weight=\"1\"\n                android:clickable=\"true\"\n                android:isScrollContainer=\"false\"\n                android:longClickable=\"false\"\n                android:max=\"5\"\n                android:progress=\"2\" />\n        </LinearLayout>\n\n        <LinearLayout\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"match_parent\"\n            android:layout_weight=\"1\"\n            android:orientation=\"vertical\">\n\n            <Switch\n                android:id=\"@+id/switch1\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"48dp\"\n                android:checked=\"true\"\n                android:paddingRight=\"20dp\"\n                android:text=\"Forsting!\"\n                android:textAlignment=\"center\"\n                android:textSize=\"18dp\" />\n\n            <Switch\n                android:id=\"@+id/switch2\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"match_parent\"\n                android:checked=\"true\"\n                android:paddingEnd=\"20dp\"\n                android:text=\"Candles\"\n                android:textAlignment=\"center\"\n                android:textSize=\"18dp\" />\n        </LinearLayout>\n\n        <LinearLayout\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\"\n            android:gravity=\"center_horizontal\"\n            android:orientation=\"vertical\">\n\n            <Button\n                android:id=\"@+id/button\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:text=\"Extinguish\" />\n\n            <Button\n                android:id=\"@+id/button2\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:onClick=\"goodbye\"\n                android:text=\"Goodbye\" />\n        </LinearLayout>\n\n    </LinearLayout>\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision 48d87079b7114e3bdaf577ec517d5ca4c985315a)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1759184443444)
+@@ -28,7 +28,7 @@
+ 
+         <!--        CakeView is a custom SurfaceView that is defined in the app's source code -->
+         <cs301.birthdaycake.CakeView
+-            android:id="@+id/cakeview"
++            android:id="@+id/cakeView"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" />
+     </LinearLayout>
+@@ -50,9 +50,9 @@
+                 android:id="@+id/textView2"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+-                android:layout_weight="1"
+                 android:text="How many Candles?"
+-                android:textSize="20dp" />
++                android:textAlignment="center"
++                android:textSize="25dp" />
+ 
+             <SeekBar
+                 android:id="@+id/seekBar"
+Index: app/src/main/java/cs301/birthdaycake/CakeController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cs301.birthdaycake;\n\npublic class CakeController {\n\n    private CakeView cakeView;\n\n    private CakeModel modelOfCake;\n\n    public CakeController (CakeView viewOfCake){\n\n        this.cakeView = viewOfCake;\n        this.modelOfCake = viewOfCake.getCakeModel();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/cs301/birthdaycake/CakeController.java b/app/src/main/java/cs301/birthdaycake/CakeController.java
+--- a/app/src/main/java/cs301/birthdaycake/CakeController.java	(revision 48d87079b7114e3bdaf577ec517d5ca4c985315a)
++++ b/app/src/main/java/cs301/birthdaycake/CakeController.java	(date 1759184443449)
+@@ -1,6 +1,9 @@
+ package cs301.birthdaycake;
+ 
+-public class CakeController {
++import android.util.Log;
++import android.view.View;
++
++public class CakeController implements View.OnClickListener {
+ 
+     private CakeView cakeView;
+ 
+@@ -11,4 +14,9 @@
+         this.cakeView = viewOfCake;
+         this.modelOfCake = viewOfCake.getCakeModel();
+     }
++
++    @Override
++    public void onClick(View view) {
++        Log.d("cake", "click!");
++    }
+ }
