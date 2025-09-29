@@ -28,7 +28,7 @@
 
         <!--        CakeView is a custom SurfaceView that is defined in the app's source code -->
         <cs301.birthdaycake.CakeView
-            android:id="@+id/cakeview"
+            android:id="@+id/cakeView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -50,9 +50,9 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="How many Candles?"
-                android:textSize="20dp" />
+                android:textAlignment="center"
+                android:textSize="25dp" />
 
             <SeekBar
                 android:id="@+id/seekBar"
