@@ -31,8 +31,8 @@ public class CakeView extends SurfaceView {
     public static final float candleWidth = 40.0f;
     public static final float wickHeight = 30.0f;
     public static final float wickWidth = 6.0f;
-    public static final float outerFlameRadius = 30.0f;
-    public static final float innerFlameRadius = 15.0f;
+    public static final float outerFlameRadius = 60.0f;
+    public static final float innerFlameRadius = 25.0f;
 
     private CakeModel cakeModel;
 
