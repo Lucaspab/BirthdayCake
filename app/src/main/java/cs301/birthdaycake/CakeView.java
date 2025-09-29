@@ -42,8 +42,6 @@ public class CakeView extends SurfaceView {
     public static final float innerFlameRadius = 25.0f;
 
     private CakeModel cakeModel;
-
-    private text textList;
     private int index = 0;
 
 
