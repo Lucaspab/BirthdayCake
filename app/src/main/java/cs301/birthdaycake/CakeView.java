@@ -94,20 +94,23 @@ public class CakeView extends SurfaceView {
 
     public void drawCandle(Canvas canvas, float left, float bottom) {
         canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
-
         //draw the outer flame
-        float flameCenterX = left + candleWidth/2;
-        float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius/3;
-        canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
+        if(cakeModel.candleLit) {
+            float flameCenterX = left + candleWidth / 2;
+            float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius / 3;
+            canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
 
-        //draw the inner flame
-        flameCenterY += outerFlameRadius/3;
-        canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
+            //draw the inner flame
+            flameCenterY += outerFlameRadius / 3;
+            canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
+        }
 
         //draw the wick
-        float wickLeft = left + candleWidth/2 - wickWidth/2;
-        float wickTop = bottom - wickHeight - candleHeight;
-        canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
+        if(cakeModel.yayOrNayCandles) {
+            float wickLeft = left + candleWidth / 2 - wickWidth / 2;
+            float wickTop = bottom - wickHeight - candleHeight;
+            canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
+        }
 
     }
 
@@ -147,21 +150,38 @@ public class CakeView extends SurfaceView {
 
         //Then a second cake layer
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
+        /*
+        if(cakeModel.yayOrNayCandles) {
+            //Now a candle in the center
+            drawCandle(canvas, cakeLeft + cakeWidth * 1 / 3 - candleWidth / 2, cakeTop);
 
-        //Now a candle in the center
-        drawCandle(canvas, cakeLeft + cakeWidth*1/3 - candleWidth/2, cakeTop);
-
-        // Draws Second Candle
-        drawCandle(canvas, cakeLeft + (cakeWidth*2)/3 - candleWidth/2, cakeTop);
-
+            // Draws Second Candle
+            drawCandle(canvas, cakeLeft + (cakeWidth * 2) / 3 - candleWidth / 2, cakeTop);
+        }
+        */
+        if(cakeModel.yayOrNayCandles){
+            int numCandle = cakeModel.howManyCandles;
+            for(int candle = 0; candle < numCandle; candle++){
+                float space = cakeWidth/(numCandle + 1);
+                float x = cakeLeft + (candle + 1) * space - candleWidth / 2;
+                drawCandle(canvas, x , cakeTop);
+            }
+        }
         if(index != 0) {
             canvas.drawText(("(" + cakeModel.x + ", " + cakeModel.y + ")"), 1600, 1000, textPaint);
 
         }
         index = index + 1;
+        if(index != 0) {
+            drawBalloon(canvas, cakeModel.x, cakeModel.y);
+        }
     }//onDraw
 
-
+    public void drawBalloon(Canvas canvas, float x , float y){
+        Paint balloon = new Paint();
+        balloon.setColor(Color.RED);
+        canvas.drawOval(x - 50, y - 80, x + 50, y , balloon);
+    }
 
 
 }
